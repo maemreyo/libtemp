@@ -6,3 +6,4 @@
 npm install your-library-name
 # or
 yarn add your-library-name
+```

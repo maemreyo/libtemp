@@ -1,7 +1,7 @@
 // src/utils/composition.ts
 export function createComponent<Props extends Record<string, any>>(
   Component: React.ComponentType<Props>,
-  displayName: string
+  displayName: string,
 ) {
   Component.displayName = displayName;
   return Component;
@@ -13,7 +13,7 @@ export function createCompoundComponent<
 >(
   Component: React.ComponentType<Props>,
   subcomponents: Subcomponents,
-  displayName: string
+  displayName: string,
 ) {
   const EnhancedComponent = Component as React.ComponentType<Props> &
     Subcomponents;
