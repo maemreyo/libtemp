@@ -11,7 +11,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "ogn.wehttam <maemreyo>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maemreyo/libtemp.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwind",
+    "component-lib"
+  ],
+  "author": "Matthew Ngo",
+  "bugs": {
+    "url": "https://github.com/maemreyo/libtemp/issues"
+  },
+  "homepage": "https://github.com/maemreyo/libtemp#readme",
   "license": "MIT",
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
@@ -87,25 +101,42 @@
     "zod": "^3.24.1"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
+    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "prettier": "prettier --check \"**/*.(ts|tsx|md|css|scss)\"",
+    "prettier:fix": "prettier --write \"**/*.(ts|tsx|md|css|scss)\"",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic",
-    "generate:component": "node scripts/generate-component.js",
-    "generate:docs": "typedoc",
+    "size": "size-limit",
     "analyze": "size-limit --why",
-    "prepare": "husky install",
-    "release": "semantic-release"
+    "prepublishOnly": "yarn build",
+    "prepare": "husky",
+    "release": "semantic-release",
+    "chromatic": "npx chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "react-hook-form": "^7.54.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17 || ^18 || ^19",
+    "react-dom": "^16.8 || ^17 || ^18 || ^19"
+  },
+  "readme": "ERROR: No README data found!",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,css,scss}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js,jsx}": [
+      "jest --bail --findRelatedTests"
+    ]
   }
 }
