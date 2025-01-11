@@ -19,6 +19,13 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "emitDeclarationOnly": false,
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@types/*": ["./types/*"],
+      "@utils/*": ["./src/utils/*"]
+    },
   }
 }
